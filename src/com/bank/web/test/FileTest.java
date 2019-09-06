@@ -2,6 +2,7 @@ package com.bank.web.test;
 
 import java.util.Scanner;
 
+
 import javax.swing.JOptionPane;
 
 import java.io.BufferedReader;
@@ -13,14 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 public class FileTest {
 	public static final String FILE_PATH =String.format("C:%sUsers%suser%seclipes-jee%sjee-bitcamp%sWebContent%sresources%stxt%s"
-												,File.separator
-												,File.separator
-												,File.separator
-												,File.separator
-												,File.separator
-												,File.separator
-												,File.separator
-												,File.separator);
+			,File.separator
+			,File.separator
+			,File.separator
+			,File.separator
+			,File.separator
+			,File.separator
+			,File.separator
+			,File.separator);
 			
 											
 //	경로를 설정 리소스 -> txt폴더에 경로를 상수형태로 fix해놓음  \\<-이거는 윈도우 전용(다른곳에서도 되기 위해 저 파일점 시파레이터를 해준다 

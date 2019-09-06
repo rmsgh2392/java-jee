@@ -4,166 +4,88 @@ import java.util.ArrayList;
 import com.bank.domains.CustomerBean;
 import com.bank.domains.EmployeeBean;
 import com.bank.domains.MemberBean;
+import com.bank.web.daoImpls.MemberDAOImpl;
+import com.bank.web.daos.MemberDAO;
 import com.bank.web.services.*;
 public class MemberServiceImpl implements MemberService{
 	
-	private List<CustomerBean> customers;
-	private List<EmployeeBean> employees;
-//	private List<MemberBean> members;
-	
+	private CustomerBean customer;
+	private MemberBean member;
+	private MemberDAO dao;
 	public MemberServiceImpl() {
-		customers = new ArrayList<>();
-		employees = new ArrayList<>();
-//		members = new ArrayList<>();
+	 customer = new CustomerBean();
+	 member = new MemberBean();
+	 dao = new MemberDAOImpl();
 	}
 	
 	@Override
 	public void join(CustomerBean param) {
-		customers.add(param);
+		dao.insertCustomer(param);
 	}
 
 	@Override
+	public CustomerBean login(MemberBean param) {
+		CustomerBean temp = dao.login();
+		if(param.getId().equals(temp.getId())
+		&&param.getPw().equals(temp.getPw())) {
+			
+		}else {
+			temp = null;
+		}
+		return temp;
+	}
+	@Override
 	public List<CustomerBean> findAllCustomers() {
-		return customers;
+		return null;
 	}
 
 	@Override
 	public List<EmployeeBean> findAllAdmins() {
-		return employees;
+		return null;
 	}
 
 	@Override
 	public List<MemberBean> findByName(String name) {
-		List<MemberBean> m = new ArrayList<>();
-		int count = 0;
-		for(CustomerBean cb : customers) {
-			if(name.equals(cb.getName())) {
-				count++;
-				break;
-			}
-		}
-		for(EmployeeBean eb : employees) {
-			if(name.equals(eb.getName())) {
-				count++;
-				break;
-			}
-		}
-		int j=0;
-		for(CustomerBean cb : customers) {
-			if(name.equals(cb.getName())) {
-				m.add(cb);
-				j++;
-				if(j==count) {
-					return m;
-				}
-				
-			}
-		}
-		for(EmployeeBean eb : employees) {
-			if(name.equals(eb.getName())) {
-				m.add(eb);
-				j++;
-				if(j == count) {
-					break;
-				}
-			}
-		}
-		return m;
+		
+		
+		return null;
 	}
 
 	@Override
 	public MemberBean findById(String id) {
-		MemberBean member = new MemberBean();
-		for(CustomerBean c : customers) {
-			if(id.equals(c.getId())) {
-				member = c;
-				return member;
-			}
-		}
-		for(EmployeeBean e : employees) {
-			if(id.equals(e.getId())) {
-				member = e;
-				break;
-			}
-		}
-		return member;
-	}
-
-	@Override
-	public boolean login(MemberBean param) {
-		boolean result = false;
-		MemberBean m = findById(param.getId()); 
-		for(CustomerBean c : customers ) {
-			if(m.equals(c.getId())) {
-				result = true;
-				break;
-			}
-		}
-		for(EmployeeBean e : employees) {
-			if(m.equals(e.getId())) {
-				result = true;
-				break;
-			}
-		}
-		return result;
+		return null;
 	}
 
 	@Override
 	public int countCustomers() {
-		return customers.size();
+		return 0;
 	}
 
 	@Override
 	public int countAdmins() {
-		// TODO Auto-generated method stub
-		return employees.size();
+		return 0;
 	}
 
 	@Override
 	public boolean existId(String id) {
-		boolean result = false;
-		MemberBean m = findById(id);
 		
-		return  (employees.contains(m)||customers.contains(m));
+		return false;
 	}
 
 	@Override
 	public void updatePass(MemberBean param) {
-		String id = param.getId();
-		String oldPw = param.getPw().split(",")[0];
-		String newPw = param.getPw().split(",")[1];
-		MemberBean m = findById(param.getId());
-		
-		int idx = (employees.contains(m)) ? employees.indexOf(m):customers.indexOf(m);
-		if(employees.contains(m)) {
-			employees.get(idx).setPw(newPw);
-		}else {
-			customers.get(idx).setPw(newPw);
-		}
-				
-			
-		
-			
-			
 	
-		
-	}
+	}		
 
 	@Override
 	public boolean deleteMember(MemberBean param) {
-		boolean b =false;
-		MemberBean m = findById(param.getId());
-		
-		b= (employees.contains(m)) ? 
-					employees.remove(m)
-					:customers.remove(m);
-					return b;
+		  
+		 return false;
 		}
 	
 
 	@Override
 	public void register(EmployeeBean param) {
-			employees.add(param);
 		
 	}
 
