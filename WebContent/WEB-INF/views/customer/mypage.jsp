@@ -15,6 +15,6 @@
 	<h3>신용도${customer.credit}</h3> <br/>
 	
 	
-	</form>
+	
 </body>
 </html>
